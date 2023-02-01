@@ -1,0 +1,23 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.7.8
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Lic:
+    repos:
+      this_repo:
+        commands:
+        - licensee detect . --confidence 60 --json
+        container: qc.lic_sleazy-linen-mandrill
+  QC.Sty:
+    repos:
+      this_repo:
+        commands:
+        - flake8 .
+        container: qc.sty_seedy-silver-chihuahua
+timeout: 5400
